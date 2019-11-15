@@ -1,0 +1,26 @@
+*. Inside elastic bean stalk, we need to create the environment so AWS elastic search
+   provides us few options like whethere we want to have an env for WebApp or for worker env.
+
+*. Inside the 'Create Web Server Env', the base config for platform must be 'Docker' n rest config
+   must be set to default >> Click on Create Environment.
+
+*. When a req gets hit by the browser to the application set on AWS, the req is handled by a load balancer
+   that is already being there as a part of the AWS elastic search application. The ES monitors the amount of traffic
+   coming to our machine.
+
+*. As soon as the traffic reaches to it's threshhold es is going to automatically add in additional VM to handle that
+   traffic. Inshort the AWS env will be having a load balancer, VM Running Docker inside it Docker container where our 
+   app will be up and running.
+
+*. At the top of the screen we have the Env "ID" and "URL" key - which is the address of our application.
+   When we hit on the URL a welcome page appears out moto is to replace it with our application view. 
+
+*. Set of API keys gives us the access to our AWS account those API keys will help us to have access
+   to the AWS via travis.yml file.
+
+*. IAM is the service to mange the API keys that can be used by outside services.
+   Inside IAM > User section > Add user > Access type - (Programmatic access) 
+   > When we click on "Attach exisiting policies directly" we land to "Policy Section" page and checks the policy providing "Providing the full access to
+     AWS Elastic search". 
+
+*. Access key only gets generated only once - "xqrZ49eynp4Jl6PsmslbhOFr/sbhYgjDhEqA0IUFs0"

@@ -1,0 +1,25 @@
+*. sudo is used to have the super user permission.
+*. We need to tell the travis to install the docker cli. 
+*. before_install consists the series of steps to be executed 
+   before running the steps.
+*. before the test run we need to run the docker image first: docker build -f Docker.dev .
+   In travis copying image_id is not feasible so we need to add a tag to it like: docker build -t <pr306500>/<pr_name> -f Docker.dev .  
+*. script section must contain all the diff cms that needs to b executed to actually run our test suits.
+   Travis-CI will b watching the output of all these cmds n if any of these return a status code other than 0, it 
+   will consider as build failed. - docker run stephengrider/docker-react npm run test -- --coverage
+*. Our moto is to automatically deploy the app to AWS as soon as it passes all our test case.
+   > deploy section will take care of it. Travis comes pre-configured with the handful of diff providers and 
+     elasticbeanstalk is one of them.
+     region: Basically where we created the elasticbeanstalk instance, we will be finding it in b/w the env url.
+     app: <same name as mentioned while creating the AWS app - docker-react>
+     env: <Will be mentioned at the top of the screen>
+     bucket: <Travis will gonna take all our github code and zip it into one file and copy into the
+            S3 bucket n it's a harddrive basically running on AWS. After uploading it will poke the 
+            AWS elasticbeanstalk to redeploy the new code application. Elasticbeanstalk > 
+            bucket_path will be same as the app name.
+    on: It's an another property on .travis.yml file where 'branch' property value "master" means that 
+    any change on master branch will re-deploy the entire app again. 
+*. Env feature provided by travis CI where we will be going to set the AWS secret Keys.
+   https://travis-ci.org/pr306500/docker-react/settings - link where we gonna store the AWS keys inside the Travis CI.
+   
+    
