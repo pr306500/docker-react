@@ -24,3 +24,20 @@
      AWS Elastic search". 
 
 *. Access key only gets generated only once - "xqrZ49eynp4Jl6PsmslbhOFr/sbhYgjDhEqA0IUFs0"
+
+*. To expose the port outside the elastic bean stalk we use EXPOSE 80 inside the docker file.
+   /*
+
+      Try editing the 'COPY' line of your Dockerfile like so:
+
+      COPY package*.json ./
+
+      Sometimes AWS has a tough time with the '.' folder designation and prefers the long form ./
+
+   */ 
+
+ *. Flow Diagram:
+     GitRepo >> Travis CI >> AWS Hoisting
+     We will build the image over on Travis when we run our tests and second time  after we push all our code 
+     to AWS elastic bean. So we were letting our application to build the image which is quite effort taking approach that 
+     need to be rectified.

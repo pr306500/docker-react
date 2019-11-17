@@ -4,7 +4,7 @@
    before running the steps.
 *. before the test run we need to run the docker image first: docker build -f Docker.dev .
    In travis copying image_id is not feasible so we need to add a tag to it like: docker build -t <pr306500>/<pr_name> -f Docker.dev .  
-*. script section must contain all the diff cms that needs to b executed to actually run our test suits.
+*. script section must contain all the diff cmds that needs to b executed to actually run our test suits.
    Travis-CI will b watching the output of all these cmds n if any of these return a status code other than 0, it 
    will consider as build failed. - docker run stephengrider/docker-react npm run test -- --coverage
 *. Our moto is to automatically deploy the app to AWS as soon as it passes all our test case.
